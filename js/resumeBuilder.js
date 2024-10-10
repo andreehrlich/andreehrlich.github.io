@@ -2,16 +2,16 @@
 
 var bio = {
 	"name": "Andre",
-	"role": "Engineer",
+	"role": "PhD Candidate in Statistics",
 	"contacts": {
-		"mobile": "xxx-xxx-xxxx",
-    	"email": "xxxxxxx2018@u.northwestern.edu",
-    	"github": "DoctaDocta",
+		"mobile": "",
+    	"email": "",
+    	"github": "https://github.com/andreehrlich/",
     	"blog": "none",
-    	"location": "Chicago, IL"
+    	"location": "Athens, Greece"
 	},
 
-	"welcomeMessage": "Hello, thanks for visiting my website!",
+	"welcomeMessage": ",
 	"skills": ["matlab", "python", "html", "css", "javascript"],
 	"biopic": "./images/profilepic.jpg"
 };
@@ -84,12 +84,22 @@ var education = {
 		"dates": 2018,
 		"url": "http://www.northwestern.edu"
 	},
-	"onlineCourses": {
-		"title": "Front-end Web Developer Nanodegree",
-		"school": "Udacity",
-		"dates": 2018,
-		"url": "udacity.com"
+	"schools": {
+		"name": "Athens University of Economics & Business",
+		"location": "Athens, Greece",
+		"degree": "Masters of Science",
+		"majors": "Statistics",
+		"dates": 2024,
+		"url": "http://www.aueb.gr"
 	},
+	"schools": {
+		"name": "Athens University of Economics & Business",
+		"location": "Athens, Greece",
+		"degree": "PhD",
+		"majors": "Statistics",
+		"dates": 2027,
+		"url": "http://www.aueb.gr"
+	}
 };
 
 education.display = function() {
