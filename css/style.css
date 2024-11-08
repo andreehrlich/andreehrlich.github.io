@@ -1,1 +1,8 @@
-
+body {
+  background-color: #142d4c;
+  color: white;
+  color-scheme: dark;
+  max-width: 800px;
+  margin: auto;
+  width:500px;
+}
