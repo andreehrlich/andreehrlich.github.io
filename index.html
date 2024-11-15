@@ -4,40 +4,79 @@
   <title>Andre Ehrlich</title>
   <link href="css/style.css" rel="stylesheet">
   <script src="js/jQuery.js"></script>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
 </head>
 <body>
-  <div id="main">
-    <div id="header">
+  <svg id='graph' width='1000' height='1000'></svg>
+
+  <div id="main" class="universal-wrapper">
+    <div class="header">
+      <img src="assets/profile.png" id="profilepic">
       <h1>Andre Ehrlich</h1>
-    </div>
-    <div id="links" height="100">
-      <p style="text-align:left">
-        <a href="mailto:[lastname][firstname]@gmail.com">Email</a> &nbsp;/&nbsp;
-        <a href="https://scholar.google.com/citations?user=lErP1HwAAAAJ&amp;hl=en">Google Scholar</a> &nbsp;/&nbsp;
-        <a href="https://www.linkedin.com/in/andre-ehrlich-35942384/">Linkedin</a> &nbsp;/&nbsp;
-        <a href="https://github.com/andreehrlich">Github</a> &nbsp;/&nbsp;
-        <a href="https://twitter.com/EhrlichAndre/">Twitter</a> &nbsp;/&nbsp;
-        <!-- <a href="data/CV.pdf">CV</a> -->
-      </p>
-      <img src="assets/profile.png" width="100" height="100" align="right">
       </div>
-    <div id="intro">
-      <p>I'm currently a PhD student in the Department of Statistics at the
-      Athens University of Economics & Business, supervised by Nikos Demiris
-      and co-supervised by Petros Dellaportas.</p> 
+    <div id="about">
+      <div id="links">
+        <p class="social-links">
+          <a href="mailto:[lastname][firstname]@gmail.com">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/>
+              <polyline points="22,6 12,13 2,6"/>
+            </svg>
+            Email
+          </a> |
+          <!-- <a href="https://scholar.google.com/citations?user=lErP1HwAAAAJ&hl=en"> -->
+          <!--   <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"> -->
+          <!--     <path d="M4 19.5v-15A2.5 2.5 0 0 1 6.5 2H20v20H6.5a2.5 2.5 0 0 1-2.5-2.5Z"/> -->
+          <!--     <path d="M8 7h6"/> -->
+          <!--     <path d="M8 11h8"/> -->
+          <!--     <path d="M8 15h5"/> -->
+          <!--   </svg> -->
+          <!--   Google Scholar -->
+          <!-- </a> | -->
+          <a href="https://www.linkedin.com/in/andre-ehrlich-35942384/">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/>
+              <rect x="2" y="9" width="4" height="12"/>
+              <circle cx="4" cy="4" r="2"/>
+            </svg>
+            LinkedIn
+          </a> |
+          <a href="https://github.com/andreehrlich">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"/>
+            </svg>
+            Github
+          </a> 
+          <!-- <a href="https://twitter.com/EhrlichAndre/"> -->
+          <!--   <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"> -->
+          <!--     <path d="M22 4s-.7 2.1-2 3.4c1.6 10-9.4 17.3-18 11.6 2.2.1 4.4-.6 6-2C3 15.5.5 9.6 3 5c2.2 2.6 5.6 4.1 9 4-.9-4.2 4-6.6 7-3.8 1.1 0 3-1.2 3-1.2z"/> -->
+          <!--   </svg> -->
+          <!--   Twitter -->
+          <!-- </a> -->
+        </p>
+      </div>
+      <div id="intro">
+        <p>I'm currently a PhD student in the Department of Statistics at the
+        Athens University of Economics & Business, supervised by Nikos Demiris
+        and co-supervised by Petros Dellaportas.</p> 
+        <p>I'm working with biomedical data within a bayesian framework of learning
+        optimal posterior distributions over functional spaces. Methodologies of
+        interest include <strong>Bayesian Gaussian Processes & Neural Diffusion
+        Processes</strong>.</p>
+        <ol>
+          <li>Inference on time-varying dynamics and individual-level measurements for stochastic ODE-driven epidemic models</li>
+          <li>Extrapolation of cancer trial survival curves.</li>
+        </ol>
 
-      <p>I'm working on understanding biomedical data through learning
-      algorithms that operate on functional distributions. Methodologies of
-      interest include <strong>Bayesian Gaussian Processes & Neural Diffusion
-      Processes</strong>. I am interested in applying these methodologies to
-      "real world" problems.</p>
-
-      <ol>
-        <li>Incorporating time-varying and individiual-level dynamics in stochastic ODE-driven epidemic models</li>
-        <li>Extrapolating long-term survival probabilities for cancer treatment</li>
-      </ol>
-
-  </div>
+      </div>
+    </div>
+  <footer>
+    <!-- <script src="//https://cdn.jsdelivr.net/npm/d3@7/+esm"></script> -->
+    <!-- <script src="//cdnjs.cloudflare.com/ajax/libs/d3/3.5.17/d3.js"></script>  -->
+    <script src="https://cdn.jsdelivr.net/npm/d3@7"></script>
+    <script src="/js/graph3.js"></script>
+    <!-- <script type="module" src="/js/graph.js"></script> -->
+  </footer>
 </body>
 </html>
 <!-- <div id="tutorials"> -->

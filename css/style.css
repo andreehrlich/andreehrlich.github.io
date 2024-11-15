@@ -1,8 +1,99 @@
+/* GRAPH */
+#graph {
+  position: absolute;
+  top: -300px; 
+  /* 50px; */
+  left: -100px; 
+  /* 100px; */
+  z-index: -1; 
+}
+.link { 
+  stroke: #999;
+  opacity: 0.6;
+}
+.node { 
+  stroke: #fff;
+  stroke-width: 1.5px;
+  filter: url(#glow);
+}
+
+/* BODY */
 body {
-  background-color: #142d4c;
-  color: white;
-  color-scheme: dark;
+  /* background-color: #142d4c; */
+  /* background-color: #F0EAD6; */
   max-width: 800px;
   margin: auto;
   width:500px;
 }
+#about {
+  /* background-color: transparent; */
+  position: relative;
+  z-index: 10; 
+  clear: both;
+  position: relative;
+  background: rgba(255, 255, 255, 0.75);
+  /* z-index: 10; */
+  clear: both; 
+  padding: 10px;
+  font-size:18px;
+}
+.header {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    padding: 10px;
+}
+.profilepic{
+  float:right;
+  /* align:right; */
+  width:100px;
+  height:100px;
+}
+h1{
+  position: relative;
+  top: 10px;
+  left: 10px;
+  /* z-index: -2;  */
+  background: rgba(255, 255, 255, 0.75);
+  z-index: 10;
+}
+/* media */
+.social-links {
+  text-align: center;
+  padding: 20px;
+}
+.social-links a {
+  text-decoration: none;
+  color: #333;
+  margin: 0 10px;
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  font-size:25px;
+}
+.social-links a:hover {
+  color: #666;
+}
+
+/* mobile: */
+/* @media only screen { */
+/* /* @media only screen and (max-width: 600px) { */ */
+/* /* @media (max-width: 768px) {  */ */
+/*   body { */
+/*     max-width: 100%; */
+/*     width: 100%; */
+/*     margin: 10px; */
+/*   } */
+/*   .profilepic{ */
+/*     float:right; */
+/*     width:200px; */
+/*     height:200px; */
+/*   } */
+/*   /* .social-links a { */ */
+/*   /*   font-size: 30px; */ */
+/*   /* } */ */
+/*   .social-links svg { */
+/*     width: 20px; */
+/*     height: 20px; */
+/*   } */
+/* } */
