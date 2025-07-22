@@ -1,0 +1,55 @@
+
+<!DOCTYPE html>
+<head>
+  <meta charset="utf-8">
+  <!--- FAVICON -->
+    <link rel="icon" type="image/png" href="/assets/favicon-96x96.png" sizes="96x96" />
+    <link rel="icon" type="image/svg+xml" href="/assets/favicon.svg" />
+    <link rel="shortcut icon" href="/assets/favicon.ico" />
+    <link rel="apple-touch-icon" sizes="180x180" href="/assets/apple-touch-icon.png" />
+    <link rel="manifest" href="/assets/site.webmanifest" />
+    <!--- FAVICON -->
+  <title>Andre Ehrlich</title>
+  <link href="../css/style2.css" rel="stylesheet">
+  <script src="../js/jQuery.js"></script>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+</head>
+<body>
+  <div id="main" class="universal-wrapper">
+    <svg id='graph' width='400' height='400'></svg>
+    <div class="header">
+      <!-- <img src="assets/profile.png" id="profilepic"> -->
+      <!-- <img src="assets/grad_photo.png" id="profilepic" > -->
+      <!-- <h1>Andre Ehrlich</h1> -->
+      <h1>Epidemic Forecasting in Brazil: Latent log-GP for Time-Varying Transmission.</h1>
+    </div>
+    <div id="intro" class="card">
+        <h4>About</h4>
+
+        <p> This project concerns the modeling of infectious diseases and
+        in particular with assessing the predictive ability of age-stratified
+        viral load data on the disease reproduction number and related
+        transmission dynamics. We also assess the inclusion of PCR viral load
+        measurements towards large-scale surveillance. Epidemics are difficult
+        to model due to sparse, noisey and biased observation process and the
+        underlying infection structure. We model the time-varying transmission
+        with a latent log-Gaussian Process prior within a hierarchical
+        stochastic epidemic model. We evaluate viral load data from Brazil,
+        which has the world's largest government-run public health system
+        serving 200M+ people. </p>
+
+      </div>
+  </div>
+  <div id="poster" class="card">
+    <h1> Poster </h1>
+    <embed src="../posters/epidemic_brazil_july_2025.pdf" id="poster_brazil" width="675px" height="1000px">
+  <div>
+  <footer>
+    <!-- <script src="//https://cdn.jsdelivr.net/npm/d3@7/+esm"></script> -->
+    <!-- <script src="//cdnjs.cloudflare.com/ajax/libs/d3/3.5.17/d3.js"></script>  -->
+    <script src="https://cdn.jsdelivr.net/npm/d3@7"></script>
+    <script src="/js/graph3.js"></script>
+    <!-- <script type="module" src="/js/graph.js"></script> -->
+  </footer>
+</body>
+</html>

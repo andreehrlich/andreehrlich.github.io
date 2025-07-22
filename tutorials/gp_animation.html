@@ -1,0 +1,482 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+      <!--- FAVICON -->
+    <link rel="icon" type="image/png" href="/assets/favicon-96x96.png" sizes="96x96" />
+    <link rel="icon" type="image/svg+xml" href="/assets/favicon.svg" />
+    <link rel="shortcut icon" href="/assets/favicon.ico" />
+    <link rel="apple-touch-icon" sizes="180x180" href="/assets/apple-touch-icon.png" />
+    <link rel="manifest" href="/assets/site.webmanifest" />
+    <!--- FAVICON -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gaussian Process Visualization</title>
+   <link href="../css/style.css" rel="stylesheet">
+</head>
+<body>
+    <div class="header">
+        <h1>Gaussian Process Visualization</h1>
+        <p>(Work-In-Progress) I'm playing around with LLM to build web-viewable statistical playground. </p>
+    </div>
+
+    <div class="main-container">
+        <div class="controls-panel">
+            <div class="control-group">
+                <h3>Data Generating Function</h3>
+                <div class="kernel-buttons">
+                    <button id="sine" class="data-fn-btn active" onclick="setDataFunction('sine')">Sine</button>
+                    <button id="polynomial" class="data-fn-btn" onclick="setDataFunction('polynomial')">Polynomial</button>
+                    <button id="step" class="data-fn-btn" onclick="setDataFunction('step')">Step</button>
+                    <button id="exponential" class="data-fn-btn" onclick="setDataFunction('exponential')">Exponential</button>
+                </div>
+            </div>
+
+            <div class="control-group">
+                <h3>Kernel Function</h3>
+                <div class="kernel-buttons">
+                    <button id="rbf" class="kernel-btn active" onclick="setKernel('rbf')">RBF</button>
+                    <button id="matern32" class="kernel-btn" onclick="setKernel('matern32')">Matérn 3/2</button>
+                    <button id="matern52" class="kernel-btn" onclick="setKernel('matern52')">Matérn 5/2</button>
+                    <button id="periodic" class="kernel-btn" onclick="setKernel('periodic')">Periodic</button>
+                </div>
+            </div>
+
+            <div class="control-group">
+                <h3>Parameters</h3>
+                <div class="slider-container">
+                    <label for="lengthScale">Length Scale: <span id="lengthScaleVal">1.0</span></label>
+                    <input type="range" id="lengthScale" min="0.1" max="3.0" step="0.1" value="1.0">
+                </div>
+                
+                <div class="slider-container">
+                    <label for="variance">Signal Variance: <span id="varianceVal">1.0</span></label>
+                    <input type="range" id="variance" min="0.1" max="2.0" step="0.1" value="1.0">
+                </div>
+                
+                <div class="slider-container">
+                    <label for="noise">Noise Level: <span id="noiseVal">0.1</span></label>
+                    <input type="range" id="noise" min="0.01" max="0.5" step="0.01" value="0.1">
+                </div>
+                
+                <div class="slider-container">
+                    <label for="dataPoints">Data Points: <span id="dataPointsVal">8</span></label>
+                    <input type="range" id="dataPoints" min="3" max="25" step="1" value="8">
+                </div>
+            </div>
+
+            <div class="control-group">
+                <h3>Actions</h3>
+                <button onclick="generateNewData()" style="width: 100%; margin-bottom: 10px;">New Data</button>
+                <button onclick="sampleFromPrior()" style="width: 100%; margin-bottom: 10px;">Sample Prior</button>
+                <button onclick="toggleAnimation()" style="width: 100%; margin-bottom: 10px;">Toggle Animation</button>
+                <button onclick="toggleTrueFunction()" style="width: 100%;">Show True Function</button>
+            </div>
+
+            <div class="control-group">
+                <h3>True Function</h3>
+                <div class="math-display" id="dataFunctionFormula">
+                    f(x) = sin(x)
+                </div>
+            </div>
+
+            <div class="control-group">
+                <h3>Current Kernel</h3>
+                <div class="math-display" id="kernelFormula">
+                    k(x,x') = ?? exp(-?||x-x'||?/??)
+                </div>
+            </div>
+        </div>
+
+        <div class="canvas-container">
+            <canvas id="gpCanvas" width="800" height="500"></canvas>
+            
+            <div class="legend">
+                <div class="legend-item">
+                    <div class="legend-color" style="background: #FF6B6B;"></div>
+                    <span>Observed Data</span>
+                </div>
+                <div class="legend-item">
+                    <div class="legend-color" style="background: #4ECDC4;"></div>
+                    <span>GP Mean</span>
+                </div>
+                <div class="legend-item">
+                    <div class="legend-color" style="background: #45B7D1; opacity: 0.3;"></div>
+                    <span>95% Confidence</span>
+                </div>
+                <div class="legend-item">
+                    <div class="legend-color" style="background: #96CEB4;"></div>
+                    <span>GP Samples</span>
+                </div>
+                <div class="legend-item">
+                    <div class="legend-color" style="background: #FFD700;"></div>
+                    <span>True Function</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const canvas = document.getElementById('gpCanvas');
+        const ctx = canvas.getContext('2d');
+        
+        // Kernel functions
+        const kernels = {
+            rbf: (x1, x2, l, v) => v * Math.exp(-0.5 * Math.pow(x1 - x2, 2) / Math.pow(l, 2)),
+            
+            matern32: (x1, x2, l, v) => {
+                const r = Math.abs(x1 - x2);
+                const sqrt3r_l = Math.sqrt(3) * r / l;
+                return v * (1 + sqrt3r_l) * Math.exp(-sqrt3r_l);
+            },
+            
+            matern52: (x1, x2, l, v) => {
+                const r = Math.abs(x1 - x2);
+                const sqrt5r_l = Math.sqrt(5) * r / l;
+                return v * (1 + sqrt5r_l + (5 * r * r) / (3 * l * l)) * Math.exp(-sqrt5r_l);
+            },
+            
+            periodic: (x1, x2, l, v) => {
+                const period = 2.0;
+                return v * Math.exp(-2 * Math.pow(Math.sin(Math.PI * Math.abs(x1 - x2) / period), 2) / Math.pow(l, 2));
+            }
+        };
+
+        const kernelFormulas = {
+            rbf: "k(x,x') = ?? exp(-?||x-x'||?/??)",
+            matern32: "k(x,x') = ??(1 + √3r/?)exp(-√3r/?)",
+            matern52: "k(x,x') = ??(1 + √5r/? + 5r?/3??)exp(-√5r/?)",
+            periodic: "k(x,x') = ?? exp(-2sin?(π|x-x'|/p)/??)"
+        };
+
+        // Data generating functions
+        const dataFunctions = {
+            sine: (x) => Math.sin(x),
+            polynomial: (x) => 0.1 * x * x * x - 0.5 * x * x + 0.3 * x,
+            step: (x) => x > 0 ? (x > 2 ? -1 : 1) : (x < -2 ? 1 : -1),
+            exponential: (x) => Math.exp(-0.5 * x * x) * Math.cos(2 * x)
+        };
+
+        const dataFunctionFormulas = {
+            sine: "f(x) = sin(x)",
+            polynomial: "f(x) = 0.1x? - 0.5x? + 0.3x",
+            step: "f(x) = step function",
+            exponential: "f(x) = exp(-?x?)cos(2x)"
+        };
+
+        // GP state
+        let currentKernel = 'rbf';
+        let currentDataFunction = 'sine';
+        let lengthScale = 1.0;
+        let variance = 1.0;
+        let noiseLevel = 0.1;
+        let numDataPoints = 8;
+        let observedData = [];
+        let isAnimating = false;
+        let animationFrame;
+        let sampleOffset = 0;
+        let showTrueFunction = false;
+        let priorSampleId = 0; // To force resampling
+
+        // Matrix operations
+        function matrixInverse(matrix) {
+            const n = matrix.length;
+            const identity = Array(n).fill().map((_, i) => Array(n).fill(0).map((_, j) => i === j ? 1 : 0));
+            const augmented = matrix.map((row, i) => [...row, ...identity[i]]);
+            
+            // Gaussian elimination
+            for (let i = 0; i < n; i++) {
+                let maxRow = i;
+                for (let k = i + 1; k < n; k++) {
+                    if (Math.abs(augmented[k][i]) > Math.abs(augmented[maxRow][i])) {
+                        maxRow = k;
+                    }
+                }
+                [augmented[i], augmented[maxRow]] = [augmented[maxRow], augmented[i]];
+                
+                const pivot = augmented[i][i];
+                if (Math.abs(pivot) < 1e-10) continue;
+                
+                for (let j = 0; j < 2 * n; j++) {
+                    augmented[i][j] /= pivot;
+                }
+                
+                for (let k = 0; k < n; k++) {
+                    if (k !== i) {
+                        const factor = augmented[k][i];
+                        for (let j = 0; j < 2 * n; j++) {
+                            augmented[k][j] -= factor * augmented[i][j];
+                        }
+                    }
+                }
+            }
+            
+            return augmented.map(row => row.slice(n));
+        }
+
+        // Global functions for HTML onclick handlers
+        window.generateNewData = function() {
+            observedData = [];
+            for (let i = 0; i < numDataPoints; i++) {
+                const x = -3 + (6 * i) / (numDataPoints - 1);
+                const trueY = dataFunctions[currentDataFunction](x);
+                const y = trueY + (Math.random() - 0.5) * noiseLevel * 4;
+                observedData.push({ x, y });
+            }
+            draw();
+        };
+
+        window.setKernel = function(kernel) {
+            document.querySelectorAll('.kernel-btn').forEach(btn => btn.classList.remove('active'));
+            document.getElementById(kernel).classList.add('active');
+            currentKernel = kernel;
+            document.getElementById('kernelFormula').textContent = kernelFormulas[kernel];
+            draw();
+        };
+
+        window.setDataFunction = function(dataFn) {
+            document.querySelectorAll('.data-fn-btn').forEach(btn => btn.classList.remove('active'));
+            document.getElementById(dataFn).classList.add('active');
+            currentDataFunction = dataFn;
+            document.getElementById('dataFunctionFormula').textContent = dataFunctionFormulas[dataFn];
+            generateNewData();
+        };
+
+        window.sampleFromPrior = function() {
+            observedData = [];
+            priorSampleId++; // Force new sample
+            draw();
+        };
+
+        window.toggleAnimation = function() {
+            isAnimating = !isAnimating;
+            if (isAnimating) {
+                animate();
+            } else {
+                cancelAnimationFrame(animationFrame);
+            }
+        };
+
+        window.toggleTrueFunction = function() {
+            showTrueFunction = !showTrueFunction;
+            const button = event.target;
+            button.textContent = showTrueFunction ? 'Hide True Function' : 'Show True Function';
+            draw();
+        };
+
+        function animate() {
+            sampleOffset += 0.02;
+            draw();
+            if (isAnimating) {
+                animationFrame = requestAnimationFrame(animate);
+            }
+        }
+
+        function draw() {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            
+            const xMin = -4, xMax = 4;
+            const yMin = -3, yMax = 3;
+            
+            // Transform functions
+            const toCanvasX = x => ((x - xMin) / (xMax - xMin)) * canvas.width;
+            const toCanvasY = y => canvas.height - ((y - yMin) / (yMax - yMin)) * canvas.height;
+            
+            // Generate test points
+            const testX = [];
+            for (let i = 0; i <= 200; i++) {
+                testX.push(xMin + (xMax - xMin) * i / 200);
+            }
+            
+            let gpMean = [], gpVar = [];
+            
+            if (observedData.length > 0) {
+                // GP regression
+                const n = observedData.length;
+                const K = Array(n).fill().map(() => Array(n).fill(0));
+                
+                // Build covariance matrix
+                for (let i = 0; i < n; i++) {
+                    for (let j = 0; j < n; j++) {
+                        K[i][j] = kernels[currentKernel](observedData[i].x, observedData[j].x, lengthScale, variance);
+                        if (i === j) K[i][j] += noiseLevel * noiseLevel;
+                    }
+                }
+                
+                const KInv = matrixInverse(K);
+                const y = observedData.map(d => d.y);
+                
+                // Predict for test points
+                for (let testPoint of testX) {
+                    const k_star = observedData.map(d => 
+                        kernels[currentKernel](testPoint, d.x, lengthScale, variance)
+                    );
+                    
+                    // Mean prediction
+                    let mean = 0;
+                    for (let i = 0; i < n; i++) {
+                        for (let j = 0; j < n; j++) {
+                            mean += k_star[i] * KInv[i][j] * y[j];
+                        }
+                    }
+                    
+                    // Variance prediction
+                    let var_pred = kernels[currentKernel](testPoint, testPoint, lengthScale, variance);
+                    for (let i = 0; i < n; i++) {
+                        for (let j = 0; j < n; j++) {
+                            var_pred -= k_star[i] * KInv[i][j] * k_star[j];
+                        }
+                    }
+                    
+                    gpMean.push(mean);
+                    gpVar.push(Math.max(0, var_pred));
+                }
+            } else {
+                // Prior samples
+                for (let i = 0; i < testX.length; i++) {
+                    gpMean.push(0);
+                    gpVar.push(variance);
+                }
+            }
+            
+            // Draw confidence bands
+            ctx.globalAlpha = 0.3;
+            ctx.fillStyle = '#45B7D1';
+            ctx.beginPath();
+            
+            // Upper band
+            for (let i = 0; i < testX.length; i++) {
+                const x = toCanvasX(testX[i]);
+                const y = toCanvasY(gpMean[i] + 1.96 * Math.sqrt(gpVar[i]));
+                if (i === 0) ctx.moveTo(x, y);
+                else ctx.lineTo(x, y);
+            }
+            
+            // Lower band (reverse)
+            for (let i = testX.length - 1; i >= 0; i--) {
+                const x = toCanvasX(testX[i]);
+                const y = toCanvasY(gpMean[i] - 1.96 * Math.sqrt(gpVar[i]));
+                ctx.lineTo(x, y);
+            }
+            
+            ctx.closePath();
+            ctx.fill();
+            ctx.globalAlpha = 1;
+            
+            // Draw GP mean
+            ctx.strokeStyle = '#4ECDC4';
+            ctx.lineWidth = 3;
+            ctx.beginPath();
+            for (let i = 0; i < testX.length; i++) {
+                const x = toCanvasX(testX[i]);
+                const y = toCanvasY(gpMean[i]);
+                if (i === 0) ctx.moveTo(x, y);
+                else ctx.lineTo(x, y);
+            }
+            ctx.stroke();
+            
+            // Draw samples from GP (if animating or no data)
+            if (isAnimating || observedData.length === 0) {
+                ctx.strokeStyle = '#96CEB4';
+                ctx.lineWidth = 2;
+                ctx.globalAlpha = 0.7;
+                
+                for (let s = 0; s < 3; s++) {
+                    ctx.beginPath();
+                    for (let i = 0; i < testX.length; i++) {
+                        // Use priorSampleId to ensure different samples each time
+                        const noise = Math.sin(testX[i] * 2 + sampleOffset + s * 2 + priorSampleId * 5) * 0.3 +
+                                     Math.cos(testX[i] * 1.5 + sampleOffset * 1.2 + s * 3 + priorSampleId * 3) * 0.2 +
+                                     Math.sin(testX[i] * 0.8 + priorSampleId * 7 + s * 1.5) * 0.15;
+                        const sample = gpMean[i] + Math.sqrt(gpVar[i]) * noise;
+                        const x = toCanvasX(testX[i]);
+                        const y = toCanvasY(sample);
+                        if (i === 0) ctx.moveTo(x, y);
+                        else ctx.lineTo(x, y);
+                    }
+                    ctx.stroke();
+                }
+                ctx.globalAlpha = 1;
+            }
+            
+            // Draw true function if enabled
+            if (showTrueFunction) {
+                ctx.strokeStyle = '#FFD700';
+                ctx.lineWidth = 3;
+                ctx.setLineDash([5, 5]);
+                ctx.globalAlpha = 0.8;
+                
+                ctx.beginPath();
+                for (let i = 0; i < testX.length; i++) {
+                    const x = toCanvasX(testX[i]);
+                    const y = toCanvasY(dataFunctions[currentDataFunction](testX[i]));
+                    if (i === 0) ctx.moveTo(x, y);
+                    else ctx.lineTo(x, y);
+                }
+                ctx.stroke();
+                
+                ctx.setLineDash([]);
+                ctx.globalAlpha = 1;
+            }
+            
+            // Draw observed data points
+            ctx.fillStyle = '#FF6B6B';
+            for (let point of observedData) {
+                ctx.beginPath();
+                ctx.arc(toCanvasX(point.x), toCanvasY(point.y), 6, 0, 2 * Math.PI);
+                ctx.fill();
+                
+                // Add glow
+                ctx.globalAlpha = 0.4;
+                ctx.beginPath();
+                ctx.arc(toCanvasX(point.x), toCanvasY(point.y), 12, 0, 2 * Math.PI);
+                ctx.fill();
+                ctx.globalAlpha = 1;
+            }
+            
+            // Draw axes
+            ctx.strokeStyle = 'rgba(255, 255, 255, 0.3)';
+            ctx.lineWidth = 1;
+            
+            // X-axis
+            ctx.beginPath();
+            ctx.moveTo(0, toCanvasY(0));
+            ctx.lineTo(canvas.width, toCanvasY(0));
+            ctx.stroke();
+            
+            // Y-axis
+            ctx.beginPath();
+            ctx.moveTo(toCanvasX(0), 0);
+            ctx.lineTo(toCanvasX(0), canvas.height);
+            ctx.stroke();
+        }
+
+        // Event listeners
+        document.getElementById('lengthScale').addEventListener('input', (e) => {
+            lengthScale = parseFloat(e.target.value);
+            document.getElementById('lengthScaleVal').textContent = lengthScale.toFixed(1);
+            draw();
+        });
+
+        document.getElementById('variance').addEventListener('input', (e) => {
+            variance = parseFloat(e.target.value);
+            document.getElementById('varianceVal').textContent = variance.toFixed(1);
+            draw();
+        });
+
+        document.getElementById('noise').addEventListener('input', (e) => {
+            noiseLevel = parseFloat(e.target.value);
+            document.getElementById('noiseVal').textContent = noiseLevel.toFixed(2);
+            draw();
+        });
+
+        document.getElementById('dataPoints').addEventListener('input', (e) => {
+            numDataPoints = parseInt(e.target.value);
+            document.getElementById('dataPointsVal').textContent = numDataPoints;
+            generateNewData();
+        });
+
+        // Initial draw
+        generateNewData();
+    </script>
+</body>
+</html>

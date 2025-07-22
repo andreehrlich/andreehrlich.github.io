@@ -1,3 +1,4 @@
+/* HOME PAGE */ 
 /* GRAPH */
 #graph {
   position: absolute;
@@ -43,11 +44,11 @@ body {
     gap: 20px;
     padding: 10px;
 }
-.profilepic{
+#profilepic{
   float:right;
-  /* align:right; */
-  width:100px;
-  height:100px;
+  width:200px;
+  /* height:300px; */
+  object-fit: contain;
 }
 h1{
   position: relative;
@@ -69,7 +70,7 @@ h1{
   display: inline-flex;
   align-items: center;
   gap: 5px;
-  font-size:25px;
+  /* font-size:25px; */
 }
 .social-links a:hover {
   color: #666;
