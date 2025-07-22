@@ -251,7 +251,7 @@ ul {
     }
     
     .social-links a {
-        display: block;
+        /* display: block; */
         margin: 10px auto;
         width: fit-content;
     }
