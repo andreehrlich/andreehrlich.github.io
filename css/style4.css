@@ -1,0 +1,467 @@
+/* HOMEPAGE - GP PLAYGROUND INSPIRED STYLE */
+
+/* Global reset and base styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background: linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%);
+    min-height: 100vh;
+    font-family: 'Arial', sans-serif;
+    color: white;
+    overflow-x: hidden;
+    max-width: 800px;
+    margin: auto;
+    width: 100%;
+    position: relative;
+}
+
+/* Graph background (keeping your existing graph functionality) */
+#graph {
+    position: fixed;
+    top: -300px;
+    left: -100px;
+    z-index: -1;
+    opacity: 0.3; /* Make it more subtle against dark background */
+}
+
+.link {
+    stroke: rgba(135, 206, 235, 0.4); /* Light blue instead of gray */
+    opacity: 0.6;
+}
+
+.node {
+    stroke: #87CEEB;
+    stroke-width: 1.5px;
+    filter: url(#glow);
+}
+
+/* Header section */
+.header {
+    padding: 40px 20px;
+    background: rgba(255, 255, 255, 0.05);
+    backdrop-filter: blur(15px);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    margin-bottom: 30px;
+    border-radius: 15px;
+    margin: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 30px;
+    flex-wrap: wrap;
+}
+
+.header .left-section {
+    flex: 0 0 auto;
+}
+
+.header .right-section {
+    flex: 1;
+    text-align: left;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 20px;
+}
+
+h1 {
+    font-size: 2.5em;
+    font-weight: 300;
+    margin-bottom: 10px;
+    letter-spacing: 2px;
+    background: none;
+    position: static;
+    z-index: auto;
+    color: white;
+    display: flex;
+    align-items: center;
+    gap: 0.1em;
+}
+
+/* Make SVG logo behave like text for copying */
+.letter-logo {
+    display: inline-block;
+    vertical-align: baseline;
+    transition: transform 0.3s ease;
+    margin-right: 0.05em;
+    margin-bottom: 0.1em;
+    user-select: none; /* Prevent SVG from being selected */
+}
+
+.letter-logo:hover {
+    transform: scale(1.1);
+}
+
+/* Add invisible "A" before the SVG that gets copied */
+h1::before {
+    content: "A";
+    position: absolute;
+    left: -9999px;
+    opacity: 0;
+    pointer-events: none;
+}
+
+/* Profile picture */
+#profilepic {
+    width: 150px;
+    height: 200px;
+    object-fit: cover;
+    /* background-position:center; */
+    border-radius:  5%;
+    object-position: center 5%;
+    border: 3px solid rgba(135, 206, 235, 0.5);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+    transition: transform 0.3s ease;
+    /* transform: scale(1.4); */
+}
+
+#profilepic:hover {
+    transform: scale(1.05);
+}
+
+/* About section */
+.card {
+    background: rgba(255, 255, 255, 0.08);
+    backdrop-filter: blur(15px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 15px;
+    padding: 30px;
+    margin: 20px; 
+    font-size: 18px;
+    line-height: 1.6;
+    color: rgba(255, 255, 255, 0.9);
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+    position: relative;
+    z-index: 10;
+}
+
+#about p {
+    margin-bottom: 15px;
+}
+
+/* Social links */
+.social-links {
+    padding: 0;
+    margin: 0;
+}
+
+.social-links a {
+    text-decoration: none;
+    color: #87CEEB;
+    margin: 0 15px;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 16px;
+    padding: 8px 12px;
+    background: rgba(255, 255, 255, 0.1);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 8px;
+    transition: all 0.3s ease;
+    font-weight: 400;
+}
+
+.social-links a:hover {
+    background: rgba(255, 255, 255, 0.2);
+    transform: translateY(-2px);
+    color: white;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+}
+
+/* Additional sections styling */
+.section {
+    background: rgba(255, 255, 255, 0.08);
+    backdrop-filter: blur(15px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 15px;
+    padding: 30px;
+    margin: 20px;
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+}
+
+.section h2 {
+    color: #87CEEB;
+    font-size: 1.8em;
+    font-weight: 400;
+    margin-bottom: 20px;
+    letter-spacing: 1px;
+}
+
+.section h3 {
+    color: #87CEEB;
+    font-size: 1.3em;
+    font-weight: 400;
+    margin-bottom: 15px;
+    margin-top: 25px;
+}
+
+.section p, .section li {
+    color: rgba(255, 255, 255, 0.9);
+    line-height: 1.6;
+    margin-bottom: 10px;
+}
+
+ul {
+    padding-left: 20px;
+}
+.section ul {
+    padding-left: 20px;
+}
+
+/* Links within content */
+.section a, .card a {
+    color: #87CEEB;
+    text-decoration: none;
+    border-bottom: 1px solid rgba(135, 206, 235, 0.3);
+    transition: all 0.3s ease;
+    padding: 2px 4px;
+    border-radius: 4px;
+}
+
+.section a:hover, .card a:hover {
+    color: white;
+    background: rgba(135, 206, 235, 0.2);
+    border-bottom-color: #87CEEB;
+    text-shadow: 0 0 8px rgba(135, 206, 235, 0.5);
+}
+
+.section a:visited, .card a:visited {
+    color: #B19CD9;
+    border-bottom-color: rgba(177, 156, 217, 0.3);
+}
+
+.section a:visited:hover, .card a:visited:hover {
+    color: #D8BFD8;
+    background: rgba(177, 156, 217, 0.2);
+    border-bottom-color: #B19CD9;
+    text-shadow: 0 0 8px rgba(177, 156, 217, 0.5);
+}
+
+/* Enhanced styling for tutorial/blog entry links */
+.card ol {
+    list-style: none;
+    counter-reset: tutorial-counter;
+    padding-left: 0;
+}
+
+.card ol li {
+    counter-increment: tutorial-counter;
+    margin-bottom: 20px;
+    position: relative;
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 12px;
+    padding: 20px;
+    transition: all 0.3s ease;
+}
+
+.card ol li:hover {
+    background: rgba(255, 255, 255, 0.08);
+    transform: translateY(-2px);
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
+}
+
+.card ol li::before {
+    content: counter(tutorial-counter, decimal-leading-zero);
+    position: absolute;
+    left: -10px;
+    top: -10px;
+    background: linear-gradient(135deg, #00BFFF, #87CEEB);
+    color: #0a1428;
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 12px;
+    font-weight: bold;
+    box-shadow: 0 4px 15px rgba(135, 206, 235, 0.4);
+}
+
+.card ol li a {
+    display: block;
+    color: #87CEEB;
+    text-decoration: none;
+    font-size: 16px;
+    font-weight: 500;
+    line-height: 1.4;
+    padding: 0;
+    border: none;
+    border-radius: 0;
+    background: transparent;
+    transition: all 0.3s ease;
+}
+
+.card ol li a:hover {
+    color: white;
+    background: transparent;
+    text-shadow: 0 0 10px rgba(135, 206, 235, 0.6);
+    border: none;
+}
+
+.card ol li a:visited {
+    color: #B19CD9;
+}
+
+.card ol li a:visited:hover {
+    color: #D8BFD8;
+    text-shadow: 0 0 10px rgba(177, 156, 217, 0.6);
+}
+
+/* Add subtle animation to the counter */
+.card ol li::before {
+    animation: pulse 2s infinite;
+}
+
+@keyframes pulse {
+    0% { box-shadow: 0 4px 15px rgba(135, 206, 235, 0.4); }
+    50% { box-shadow: 0 4px 20px rgba(135, 206, 235, 0.6); }
+    100% { box-shadow: 0 4px 15px rgba(135, 206, 235, 0.4); }
+}
+
+/* Special styling for tutorial section h4 */
+.card h4 {
+    color: #87CEEB;
+    font-size: 1.4em;
+    font-weight: 400;
+    margin-bottom: 25px;
+    letter-spacing: 1px;
+    text-align: center;
+    position: relative;
+}
+
+.card h4::after {
+    content: "";
+    position: absolute;
+    bottom: -10px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 60px;
+    height: 2px;
+    background: linear-gradient(90deg, transparent, #87CEEB, transparent);
+}
+
+/* Poster display styling */
+.poster-container {
+    background: rgba(255, 255, 255, 0.08);
+    backdrop-filter: blur(15px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 15px;
+    padding: 20px;
+    margin: 20px;
+    text-align: center;
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+}
+
+.poster-container img {
+    width: 100%;
+    max-width: 800px;
+    height: auto;
+    border-radius: 10px;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+    transition: transform 0.3s ease;
+}
+
+.poster-container img:hover {
+    transform: scale(1.02);
+}
+
+.poster-fallback {
+    background: rgba(255, 255, 255, 0.08);
+    backdrop-filter: blur(15px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 15px;
+    padding: 30px;
+    margin: 20px;
+    text-align: center;
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+}
+
+.poster-fallback a {
+    display: inline-block;
+    padding: 15px 30px;
+    background: rgba(135, 206, 235, 0.2);
+    color: #87CEEB;
+    text-decoration: none;
+    border-radius: 8px;
+    border: 1px solid rgba(135, 206, 235, 0.3);
+    transition: all 0.3s ease;
+    margin-top: 15px;
+}
+
+.poster-fallback a:hover {
+    background: rgba(135, 206, 235, 0.3);
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+}
+@media (max-width: 768px) {
+    body {
+        max-width: 100%;
+        width: 100%;
+        margin: 0;
+    }
+    
+    .header {
+        flex-direction: row;
+        text-align: left;
+        gap: 20px;
+        padding: 30px 15px;
+        margin: 10px;
+    }
+    
+    .header .left-section {
+        flex: 0 0 auto;
+    }
+    
+    .header .right-section {
+        flex: 1;
+        min-width: 0;
+    }
+    
+    h1 {
+        font-size: 2em;
+    }
+    
+    #profilepic {
+        width: 150px;
+        height: 150px;
+    }
+    
+    #about, .section {
+        margin: 10px;
+        padding: 20px;
+    }
+    
+    .social-links a {
+        display: block;
+        margin: 10px auto;
+        width: fit-content;
+    }
+    
+    .social-links svg {
+        width: 20px;
+        height: 20px;
+    }
+}
+
+@media (max-width: 480px) {
+    h1 {
+        font-size: 1.8em;
+        letter-spacing: 1px;
+    }
+    
+    #about, .section {
+        font-size: 16px;
+        padding: 15px;
+    }
+    
+    .social-links {
+        padding: 20px 15px;
+    }
+}

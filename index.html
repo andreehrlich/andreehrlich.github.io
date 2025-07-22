@@ -9,9 +9,18 @@
     <link rel="apple-touch-icon" sizes="180x180" href="/assets/apple-touch-icon.png" />
     <link rel="manifest" href="/assets/site.webmanifest" />
     <!--- FAVICON -->
-    <link href="css/style2.css" rel="stylesheet">
+    <link href="css/style4.css" rel="stylesheet">
   <script src="js/jQuery.js"></script>
   <meta name="viewport" content="width=device-width, initial-scale=1">
+  <script>
+  document.addEventListener('copy', function(e) {
+      const selection = window.getSelection();
+      if (selection.toString().includes('ndre Ehrlich')) {
+          e.clipboardData.setData('text/plain', 'Andre Ehrlich');
+          e.preventDefault();
+      }
+  });
+  </script>
 </head>
 <body>
     <div class="header">
@@ -21,7 +30,7 @@
       <div class="right-section">
         <!-- <h1>Andre Ehrlich</h1> -->
 
-        <h1>
+        <h1 id="title-name">
           <svg class="letter-logo" width="1.2em" height="1.2em" viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg">
             <defs>
               <filter id="glow-header">
@@ -53,6 +62,7 @@
             <path d="M 8 28 L 4 28 L 4 24" fill="none" stroke="#87CEEB" stroke-width="1" opacity="0.4"/>
           </svg>ndre Ehrlich
         </h1>
+
         <div id="links">
           <p class="social-links">
             <a href="mailto:[lastname][firstname]@gmail.com">
@@ -104,8 +114,8 @@
     <ol>
       <!-- <li>Non-Parametric Estimation</li> -->
       <!-- <li><a href="tutorials/itr.html">Precision Medicine: Non-Parametrically Optimized Linear Survival Treatment Rules</a></li> -->
-      <li><a href="tutorials/brazil_epidemic.html">Epidemic Forecasting in Brazil: Latent log-GP for Time-Varying Transmission.</a></li>
-      <li><a href="tutorials/gp_animation.html">Gaussian Process Playground</a></li>
+      <li><a href="tutorials/brazil_epidemic.html">Epidemic Forecasting with Viral Load in Brazil: Latent log-GP for Time-Varying Transmission</a></li>
+      <li><a href="tutorials/gp_animation.html">Simple Gaussian Process Viewer</a></li>
       <!-- <li><a href="tutorials/bayesgp.html">Epidemics: Bayesian Gaussian Process in Stan</a></li> -->
     </ol>
   </div>
