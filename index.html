@@ -1,134 +1,585 @@
-<!DOCTYPE html>
-<head>
-  <meta charset="utf-8">
-  <title>Andre Ehrlich</title>
-  <!--- FAVICON -->
+<!doctype html>
+<html lang="en" class="dark">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="description" content="Andre Ehrlich — personal website" />
+    <title>Andre Ehrlich</title>
+
+    <!-- Favicon suite (reusing your existing assets/) -->
     <link rel="icon" type="image/png" href="/assets/favicon-96x96.png" sizes="96x96" />
     <link rel="icon" type="image/svg+xml" href="/assets/favicon.svg" />
     <link rel="shortcut icon" href="/assets/favicon.ico" />
     <link rel="apple-touch-icon" sizes="180x180" href="/assets/apple-touch-icon.png" />
     <link rel="manifest" href="/assets/site.webmanifest" />
-    <!--- FAVICON -->
-    <link href="css/style4.css" rel="stylesheet">
-  <script src="js/jQuery.js"></script>
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <!-- <script> -->
-  <!-- document.addEventListener('copy', function(e) { -->
-  <!--     const selection = window.getSelection(); -->
-  <!--     if (selection.toString().includes('ndre Ehrlich')) { -->
-  <!--         e.clipboardData.setData('text/plain', 'Andre Ehrlich'); -->
-  <!--         e.preventDefault(); -->
-  <!--     } -->
-  <!-- }); -->
-  <!-- </script> -->
-</head>
-<body>
-    <div class="header">
-      <div class="left-section">
-        <img src="assets/grad_photo.png" id="profilepic" >
-      </div>
-      <div class="right-section">
-        <!-- <h1>Andre Ehrlich</h1> -->
 
-        <h1 id="title-name">
-          <svg class="letter-logo" width="1.2em" height="1.2em" viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg">
-            <defs>
-              <filter id="glow-header">
-                <feGaussianBlur stdDeviation="1.5" result="coloredBlur"/>
-                <feMerge> 
-                  <feMergeNode in="coloredBlur"/>
-                  <feMergeNode in="SourceGraphic"/>
-                </feMerge>
-              </filter>
-              <linearGradient id="techGradient-header" x1="0%" y1="0%" x2="100%" y2="100%">
-                <stop offset="0%" style="stop-color:#00BFFF;stop-opacity:1" />
-                <stop offset="100%" style="stop-color:#87CEEB;stop-opacity:1" />
-              </linearGradient>
-              <pattern id="grid-header" width="4" height="4" patternUnits="userSpaceOnUse">
-                <path d="M 4 0 L 0 0 0 4" fill="none" stroke="#87CEEB" stroke-width="0.3" opacity="0.3"/>
-              </pattern>
-            </defs>
-            <circle cx="16" cy="16" r="15" fill="#0a1428" stroke="url(#techGradient-header)" stroke-width="1"/>
-            <rect width="30" height="30" x="1" y="1" fill="url(#grid-header)" rx="15"/>
-            <path d="M 16 5 L 7.5 25 L 10.5 25 L 12 21 L 20 21 L 21.5 25 L 24.5 25 L 16 5 Z" 
-                  fill="none" stroke="url(#techGradient-header)" stroke-width="2" filter="url(#glow-header)"/>
-            <line x1="11" y1="18" x2="21" y2="18" stroke="url(#techGradient-header)" stroke-width="2.5" stroke-linecap="square" filter="url(#glow-header)"/>
-            <circle cx="16" cy="5" r="1.5" fill="url(#techGradient-header)" filter="url(#glow-header)"/>
-            <circle cx="12" cy="18" r="0.8" fill="url(#techGradient-header)" opacity="0.8"/>
-            <circle cx="20" cy="18" r="0.8" fill="url(#techGradient-header)" opacity="0.8"/>
-            <path d="M 4 8 L 4 4 L 8 4" fill="none" stroke="#87CEEB" stroke-width="1" opacity="0.4"/>
-            <path d="M 24 4 L 28 4 L 28 8" fill="none" stroke="#87CEEB" stroke-width="1" opacity="0.4"/>
-            <path d="M 28 24 L 28 28 L 24 28" fill="none" stroke="#87CEEB" stroke-width="1" opacity="0.4"/>
-            <path d="M 8 28 L 4 28 L 4 24" fill="none" stroke="#87CEEB" stroke-width="1" opacity="0.4"/>
-          </svg>ndre Ehrlich
-        </h1>
+    <!-- Base: open external links in new tab by default; internal anchors use target="_self" -->
+    <base target="_blank" />
 
-        <div id="links">
-          <p class="social-links">
-            <a href="mailto:[lastname][firstname]@gmail.com">
-              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/>
-                <polyline points="22,6 12,13 2,6"/>
-              </svg>
-            </a> 
-            <a href="https://www.linkedin.com/in/andre-ehrlich-35942384/">
-              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/>
-                <rect x="2" y="9" width="4" height="12"/>
-                <circle cx="4" cy="4" r="2"/>
-              </svg>
-            </a> 
-            <a href="https://github.com/andreehrlich">
-              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                <path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"/>
-              </svg>
-            </a> 
-          </p>
+    <!-- Tailwind output (you'll build this to css/output.css) -->
+    <link href="/css/peluchetti.css" rel="stylesheet" />
+
+    <!-- Flowbite (popovers/tooltips if you want them later) -->
+    <script defer src="https://cdn.jsdelivr.net/npm/flowbite@2.5.1/dist/flowbite.min.js"></script>
+
+    <!-- Dark-mode flash guard -->
+    <script>
+      if (
+        localStorage.getItem("color-theme") === "dark" ||
+        (!("color-theme" in localStorage) &&
+          window.matchMedia("(prefers-color-scheme: dark)").matches)
+      ) {
+        document.documentElement.classList.add("dark");
+      } else {
+        document.documentElement.classList.remove("dark");
+      }
+    </script>
+  </head>
+  <body class="no-scrollbar bg-white antialiased text-stone-700 dark:bg-stone-900 dark:text-stone-300">
+    <div class="flex">
+      <div class="flex-grow"></div>
+
+      <!-- Content column -->
+      <main class="max-w-3xl flex-grow p-4 pb-16 pt-14 text-justify text-base xs:text-lg md:p-14">
+      <img src="/assets/grad_photo.png" alt="Andre Ehrlich" 
+        height="260px" width="220px" 
+        class="mx-auto block h-8 w-8 sm:h-10 sm:w-10 rounded-full object-cover shadow sm:mx-0 dark:brightness-95" />
+      <!-- class="mx-auto h-10 w-10 rounded-full object-cover shadow sm:mx-0 sm:x-0 dark:brightness-95" /> -->
+
+
+        <!-- About -->
+        <section id="about" class="pb-8 pt-16">
+          <div class="flex items-center pb-8">
+            <div><h2 class="text-xl font-semibold tracking-tight">About</h2></div>
+            <div class="relative top-[2px] ml-2 mr-2 h-[2px] w-5 bg-stone-200 dark:bg-stone-800"></div>
+            <div>
+              <h2 class="text-xl font-semibold tracking-tight flex items-center gap-2">
+                  𝔸ndre 𝔼hrlich
+              </h2>
+            </div>
+            <div class="relative top-[2px] ml-2 h-[2px] flex-grow bg-stone-200 dark:bg-stone-800"></div>
+          </div>
+              <p> 
+                PhD Candidate in Statistics, 
+           <a class="text-sky-600 
+                     dark:text-sky-300
+                     underline decoration-1
+                     underline-offset-2
+                     hover:text-amber-600 dark:hover:text-orange-300"
+               href="https://www.dept.aueb.gr/en/stat-0"
+           >Athens University of Economics &amp; Business (AUEB)</a>, exp. 2028. 
+
+           <a class="text-sky-600 
+                     dark:text-sky-300
+                     underline decoration-1
+                     underline-offset-2
+                     hover:text-amber-600 dark:hover:text-orange-300"
+               href="https://www.dept.aueb.gr/en/stat/content/msc-statistics/"
+           >
+             MSc Statistics, AUEB</a>, 2024.
+            Previously, I was a Data Scientist &amp; Technical Product Manager leading a team of 5 in
+            building Natural Language and Time Series production algorithms for maritime shipping technology at 
+           <a class="text-sky-600 
+                     dark:text-sky-300
+                     underline decoration-1
+                     underline-offset-2
+                     hover:text-amber-600 dark:hover:text-orange-300"
+               href="https://www.thesignalgroup.com/"
+           >The Signal Group</a>, 2019-2023.
+         BSc in Computer Science from 
+           <a class="text-sky-600 
+                     dark:text-sky-300
+                     underline decoration-1
+                     underline-offset-2
+                     hover:text-amber-600 dark:hover:text-orange-300"
+               href="https://www.mccormick.northwestern.edu/computer-science/"
+           >
+                Northwestern University,
+                </a> 
+             2019.
+             </p>
+
+          <!-- <div class="grid grid-cols-1 gap-6 sm:grid-cols-[auto_1fr] sm:items-start"> -->
+          <!--   <div class="space-y-4"> -->
+          <!--     <div class="pt-1"> -->
+          <!--       <h3 class="text-base font-medium">Focus areas</h3> -->
+          <!--       <ul class="list-disc pl-5 text-sm xs:text-base"> -->
+          <!--         <li>Statistics &amp; Data Science</li> -->
+          <!--         <li>Technical Product Management</li> -->
+          <!--         <li>Software Engineering</li> -->
+          <!--       </ul> -->
+          <!--     </div> -->
+          <!--   </div> -->
+          <!-- </div> -->
+        </section>
+
+        <!-- Examples -->
+        <section id="phd" class="pb-8 pt-16">
+          <div class="flex items-center pb-6">
+            <div><h2 class="text-xl font-semibold tracking-tight">PhD</h2></div>
+            <div class="relative top-[2px] ml-2 h-[2px] flex-grow bg-stone-200 dark:bg-stone-800"></div>
+          </div>
+
+        <!-- AUEB -->
+        <article class="rounded-md border border-stone-200 p-4 dark:border-stone-800">
+        <h3 class="text-lg font-medium">PhD Candidate — 
+           <a class="text-sky-600 
+                     dark:text-sky-300
+                     underline decoration-1
+                     underline-offset-2
+                     hover:text-amber-600 dark:hover:text-orange-300"
+               href="https://www.dept.aueb.gr/en/stat/content/msc-statistics/"
+           >
+            Athens University of Economics &amp; Business (AUEB)
+          </a>
+        </h3>
+        <p class="text-sm opacity-75">Sep 2024 – Present · Athens, Greece</p>
+        <!-- <p class="mt-2">Thesis: <em>"On the Analysis of Biomedical Data via Functional Distributions."</em></p> -->
+        <!-- <p class="mt-2">Project 1 models infectious diseases using <em>Gaussian Processes</em> and <em>Neural Diffusion Processes</em> as latent drivers in age‑stratified, time‑varying transmission models, incorporating PCR viral‑load measurements as surveillance signals. Analysis includes Brazil’s national health system (200M+ population).</p> -->
+        <!-- <p class="mt-2 text-sm opacity-85"><span class="font-medium">Keywords:</span> Epidemiology, infectious disease modeling, precision medicine, dynamic treatment regimes, survival analysis, oncology, machine learning, causal inference, stochastic processes, partial differential equations.</p> -->
+
+              <ul class="mt-2 list-disc pl-5 space-y-1">
+                <li>
+                  <p>
+                  Thesis, <em>"On the Analysis of Biomedical Data via Functional Distributions"</em>
+                  </p>
+                </li>
+
+                <li>
+                  Assess statistical and computational efficiency and
+                  extrapolation accuracy of Gaussian Processes &amp; Neural
+                  Diffusion Processes and Gaussian Processes to model 
+                  two distinct biomedical estimation tasks:
+                  Epidemic Forecasting &amp; Survival Extrapolation. 
+                </li>
+
+                <li> <p> Advised by 
+                   <a class="text-sky-600 
+                             dark:text-sky-300
+                             underline decoration-1
+                             underline-offset-2
+                             hover:text-amber-600 dark:hover:text-orange-300"
+                       href="https://www2.aueb.gr/users/nikos/"
+                   > 
+                   Dr. Nikolaos Demiris 
+                   </a> 
+                     &amp; 
+                   <a class="text-sky-600 
+                             dark:text-sky-300
+                             underline decoration-1
+                             underline-offset-2
+                             hover:text-amber-600 dark:hover:text-orange-300"
+                       href="https://www.homepages.ucl.ac.uk/~ucakpde/"
+                   > 
+                   Dr. Petros Dellaportas. 
+                   </a> </p>
+                </li>
+              </ul>
+
+        </article>
+
+
+
+          <article class="rounded-md border border-stone-200 p-4 dark:border-stone-800">
+          <h3 class="text-lg font-medium">Project 1: Time-Varying Transmission and Epidemic Viral Load Measurements </h3>
+
+          <p>We investigate how might viral load measurements from PCR tests be
+          used towards inferring time-varying transmissability. </p>
+          <ul class="mt-2 list-disc pl-5 space-y-1">
+            <li> Assess the predictive ability of age-stratified viral load data on the disease reproduction number and related transmission dynamics. </li>
+            <li> Assess the inclusion of PCR viral load measurements towards large-scale surveillance. </li>
+            <li> Model the time-varying transmission with a latent log-Gaussian Process prior within a hierarchical stochastic epidemic model. </li>
+            <!-- <li> Epidemics are difficult to model due to sparse, noisey and biased observation process and the underlying infection structure. </li> -->
+            <li> Evaluate viral load data from Brazil, which has the world's largest government-run public health system serving 200M+ people. </li>
+          </ul>
+
+          <div class="flex justify-center">
+            <div id="poster" class="card">
+            <h1> <em>Poster</em></h1>
+            <!-- <embed src="../posters/epidemic_brazil_july_2025.pdf" id="poster_brazil" width="675px" height="1000px"> -->
+            <!-- <img src="../posters/epidemic_brazil_july_2025.jpg" id="poster_brazil_png" width="675px" height="1000px"> -->
+
+              <iframe
+                src="../posters/epidemic_brazil_july_2025.pdf" 
+                width="345px"
+                height="500px"
+                style="border: none;"
+              ></iframe>
+            </div>
+          </div>
+
+          </article>
+
+          <!---->
+          <!-- <ol class="list-decimal space-y-2 pl-6"> -->
+          <!--   <li> -->
+          <!--     <a class="hover:text-amber-600 dark:hover:text-orange-300" href="/tutorials/brazil_epidemic.html" target="_self"> -->
+          <!--       Epidemic Forecasting with Viral Load in Brazil: Latent log-GP for Time-Varying Transmission -->
+          <!--     </a> -->
+          <!--   </li> -->
+          <!--   <li> -->
+          <!--     <a class="hover:text-amber-600 dark:hover:text-orange-300" href="/tutorials/gp_animation.html" target="_self"> -->
+          <!--       Simple Gaussian Process Viewer -->
+          <!--     </a> -->
+          <!--   </li> -->
+          <!-- </ol> -->
+        </section>
+              
+
+      <!-- Experience -->
+      <section id="experience" class="pb-8 pt-16">
+        <div class="flex items-center pb-6">
+        <div><h2 class="text-xl font-semibold tracking-tight">Experience</h2></div>
+        <div class="relative top-[2px] ml-2 h-[2px] flex-grow bg-stone-200 dark:bg-stone-800"></div>
         </div>
-      </div>
-    <!-- <svg id="graph"></svg> -->
+
+
+        <div class="space-y-6">
+
+        <!-- Signal — DS & TPM -->
+        <article class="rounded-md border border-stone-200 p-4 dark:border-stone-800">
+
+        <h3 class="text-lg font-medium">Technical Product Manager, Advanced
+                   Algorithms — 
+           <a class="text-sky-600 
+                     dark:text-sky-300
+                     underline decoration-1
+                     underline-offset-2
+                     hover:text-amber-600 dark:hover:text-orange-300"
+               href="https://www.thesignalgroup.com/"
+           >
+             The Signal Group
+           </a>
+        </h3>
+        <p class="text-sm opacity-75">Apr 2022 – Sep 2023 · Athens, Greece</p>
+        <ul class="mt-2 list-disc pl-5 space-y-1">
+        <li>Led a team of 5 in data-science product development; direct report to CSO &amp; SVP.</li>
+        <li>Built core NLP systems for unstructured maritime data (position lists, cargo ads, fixtures, S&amp;P, vessel specs) powering multiple tier‑1 products; 100k+ docs/day.</li>
+        <li>Managed 3 DSs in model building, fine‑tuning, hardening models.</li>
+        <li>Designed global port congestion forecasting: latent port processing speed, adaptive now/forecast wait times; supervised 2 engineers to ship API updating 4×/day (10k ports, 100k ships).</li>
+        <li>Client‑facing research, technical sales, onboarding with shipbrokers, hedge funds, and PMs.</li>
+        </ul>
+        <!-- </article> -->
+
+
+        <br>
+        <!-- Signal — DS NLP -->
+        <!-- <article class="rounded-md border border-stone-200 p-4 dark:border-stone-800"> -->
+        <h3 class="text-lg font-medium">Data Scientist, Natural Language Processing</h3>
+        <p class="text-sm opacity-75">Oct 2019 – Mar 2022 </p>
+        <ul class="mt-2 list-disc pl-5 space-y-1">
+        <li>Developed explainable ML for maritime NLP (entity extraction, document parsing).</li>
+        <li>Scaled market‑data coverage ~1000×; real‑time inference &lt; 5s.</li>
+        <li>Supported DS sprints, visited/shadowed users; contributed to product launches &amp; OKRs.</li>
+        </ul>
+
+        <p class="mt-2 text-sm opacity-85"><span class="font-medium">Tech:</span> Python, R, Linux, Vim, shell,
+         functional programming, C++, MongoDB, Docker, Kubernetes, FastAPI.</p>
+
+        </article>
+
+      <!-- Northwestern -->
+      <article class="rounded-md border border-stone-200 p-4 dark:border-stone-800">
+      <h3 class="text-lg font-medium">Research Assistant — 
+
+       <a class="text-sky-600 
+                     dark:text-sky-300
+                     underline decoration-1
+                     underline-offset-2
+                     hover:text-amber-600 dark:hover:text-orange-300"
+          href="https://aqualab.cs.northwestern.edu/"
+        >
+        Northwestern University (AquaLab)
+        </a>
+
+      </h3>
+      <p class="text-sm opacity-75">Jan 2019 – Jun 2019 · Greater Chicago Area, USA</p>
+      <p class="mt-2">Studied planetary‑scale networks &amp; web QoE. Explored automatic webpage resource reduction (prefetching, lazy‑loading, edge caching) and evaluated integrity via MTurk and QoE metrics (PLT, TTFB, Speed Index).</p>
+      <ul class="mt-2 list-disc pl-5 space-y-1">
+      <li>Scaled web scraping to stratified WWW samples; AWS EC2/S3 pipelines.</li>
+      <li>Computed multimodal features: language, DOM structure, imagery; scaled experiments 100×.</li>
+      </ul>
+      </article>
+
+
+      <!-- Plume -->
+      <article class="rounded-md border border-stone-200 p-4 dark:border-stone-800">
+      <h3 class="text-lg font-medium">Software Engineer Intern — 
+
+       <a class="text-sky-600 
+                 dark:text-sky-300
+                 underline decoration-1
+                 underline-offset-2
+                 hover:text-amber-600 dark:hover:text-orange-300"
+          href="https://www.plume.com/"
+        >
+        Plume Design, Inc.
+      </a></h3>
+      <p class="text-sm opacity-75">Jun 2018 – May 2019 · Palo Alto, CA, USA</p>
+      <p class="mt-2">Joined &lt;100‑person team shortly after surpassing 1M homes. Plume applies numerical optimization, probabilistic programming, and RL to manage home Wi‑Fi.</p>
+      <ul class="mt-2 list-disc pl-5 space-y-1">
+      <li>IoT security ML on millions of DNS events (partially‑labeled non‑parametric methods).</li>
+      <li>API: security features, TDD, OOP refactors for multi‑region customers.</li>
+      <li>UI: diagnostics visualization; auth flows; support site redesign.</li>
+      </ul>
+      <p class="mt-2 text-sm opacity-85"><span class="font-medium">Tech:</span> Python, R, Spark, NoSQL, Node.js, MongoDB, Mocha/Chai, Angular, D3.js, Highcharts.</p>
+      </article>
+
+
+      <!-- Texas A&M Univ. -->
+      <article class="rounded-md border border-stone-200 p-4 dark:border-stone-800">
+      <h3 class="text-lg font-medium">Software Contributor — <a class="text-sky-600 
+                 dark:text-sky-300
+                 underline decoration-1
+                 underline-offset-2
+                 hover:text-amber-600 dark:hover:text-orange-300"
+            html="https://genomics.tamu.edu/"
+          >Texas A&amp;M Inst of Genome Science &amp; Society</a>
+      </h3>
+      <p class="text-sm opacity-75">Jul 2016 – Sep 2016 · College Station–Bryan, TX, USA</p>
+
+      <p class="mt-2">Developed <em>gQTL</em>, a web UI for genetic researchers
+      to explore data and send jobs for computation of Quantiative Trait Locus
+      (QTL) mapping on Collaborative Cross mice (DOQTL‑based).</p>
+
+      <ul class="mt-2 list-disc pl-5 space-y-1">
+        <li>Designed relational DB + RShiny web interface; job tracking, data inspection, markdown reports.</li>
+        <li><p>Spotlight Publication in G3 Journal: 
+
+          <!-- <a class="underline hover:text-amber-600 dark:hover:text-orange-300" href="http://www.g3journal.org/content/8/8/2559.full">gQTL paper</a>. -->
+        <a class="text-sky-600 dark:text-sky-300 underline decoration-1 underline-offset-2
+                   hover:text-amber-600 dark:hover:text-orange-300"
+           href="http://www.g3journal.org/content/8/8/2559.full"
+           data-popover-target="gqtl-pop" data-popover-trigger="hover">
+          gQTL: A Web Application for QTL Analysis Using the Collaborative Cross Mouse Genetic Reference Population.
+        </a>
+        </p>
+        </li>
+      </ul>
+      </article>
+
+
+      <!-- Texas A&M Health Science Center -->
+      <article class="rounded-md border border-stone-200 p-4 dark:border-stone-800">
+      <h3 class="text-lg font-medium">Software Contributor (Intern) — 
+
+      <h3 class="text-lg font-medium">Software Contributor — 
+        <a class="text-sky-600 
+                 dark:text-sky-300
+                 underline decoration-1
+                 underline-offset-2
+                 hover:text-amber-600 dark:hover:text-orange-300"
+            html="https://health.tamu.edu/index.html"
+        >
+        Texas A&amp;M Health Science Center
+        </a>
+        (
+        <a class="text-sky-600 
+                 dark:text-sky-300
+                 underline decoration-1
+                 underline-offset-2
+                 hover:text-amber-600 dark:hover:text-orange-300"
+            html="https://www.bswhealth.com/"
+        >
+        Baylor Scott &amp; White)</a>
+      </h3>
+      <p class="text-sm opacity-75">Jun 2015 – Sep 2015 · Killeen/Temple, TX, USA</p>
+      <ul class="mt-2 list-disc pl-5 space-y-1">
+      <li>Processed RNA‑seq counts pre/post treatment; statistical analysis under supervision.</li>
+      <li>Built a DB for 20k+ elements; </li>
+      <!-- <li>Publication: <a class="underline hover:text-amber-600 dark:hover:text-orange-300" href="http://ajp.amjpathol.org/article/S0002-9440(16)30529-6/abstract">Statistical RNA‑seq Analysis of Cholangiocarcinoma Tissue Samples</a>.</li> -->
+
+      <li><p>Acknowledged in AJP publication:  
+        <a class="text-sky-600
+          dark:text-sky-300
+          underline decoration-1
+          underline-offset-2
+          hover:text-amber-600
+          dark:hover:text-orange-300"
+          href="http://ajp.amjpathol.org/article/S0002-9440(16)30529-6/abstract"
+          data-popover-target="ajp-pop"
+          data-popover-trigger="hover" 
+        >
+          miR-24 Inhibition Increases Menin Expression and Decreases Cholangiocarcinoma Proliferation</a> 
+        </p>
+      </li>
+
+      </ul>
+      </article>
+      </section>
+
+      <!-- CONTACT SECTION -->
+        <section id="contact" class="pb-8 pt-16">
+          <div class="flex items-center pb-6">
+            <div><h2 class="text-xl font-semibold tracking-tight">Contact</h2></div>
+            <div class="relative top-[2px] ml-2 h-[2px] flex-grow bg-stone-200 dark:bg-stone-800"></div>
+          </div>
+          <p class="flex items-center gap-5">
+            <p> 
+            <a class="font-mono hover:text-amber-600 dark:hover:text-orange-300" href="mailto:[lastname][firstname]@gmail.com" aria-label="Email"> ✉️  mailto:[lastname][firstname]@gmail.com </a> 
+            </p>
+            <!-- <a class="font-mono hover:text-amber-600 dark:hover:text-orange-300" href="https://www.linkedin.com/in/andre-ehrlich-35942384/" aria-label="LinkedIn">in</a> -->
+            <!-- <a class="font-mono hover:text-amber-600 dark:hover:text-orange-300" href="https://github.com/andreehrlich" aria-label="GitHub">GH</a> -->
+            <div>
+              <p>
+                <a class="
+inline-flex items-center gap-2 
+                   hover:text-amber-600 dark:hover:text-orange-300"
+                   href="https://github.com/andreehrlich" aria-label="GitHub">
+                  <svg class="h-5 w-5" viewBox="0 0 24 24" fill="none"
+                       stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                       aria-hidden="true">
+                    <path d="M9 19c-5 1.5-5-2.5-7-3"/>
+                    <path d="M15 22v-3.87a3.37 3.37 0 0 0-.94-2.61"/>
+                    <path d="M20.49 11.74a5.44 5.44 0 0 0 .39-2.77 5.44 5.44 0 0 0-1.5-3.86 5.07 5.07 0 0 0-.09-3s-1.18-.35-3.91 1.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1a5.07 5.07 0 0 0-.09 3 5.44 5.44 0 0 0-1.5 3.86 5.44 5.44 0 0 0 .39 2.77"/>
+                    <path d="M9 18.13a3.37 3.37 0 0 1-2.06-3.09"/>
+                    <path d="M15 18.13a3.37 3.37 0 0 0-2.06-3.09"/>
+                    <path d="M15 18.13c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77"/>
+                    <path d="M9 18.13V22"/>
+                  </svg>
+                   github.com/andreehrlich
+                </a>
+              </p>
+            </div>
+            <div>
+              <p>
+                  <a class="
+                            inline-flex items-center gap-2
+                     hover:text-amber-600 dark:hover:text-orange-300"
+                     href="https://www.linkedin.com/in/andre-ehrlich-35942384/" aria-label="LinkedIn">
+                    <svg class="h-5 w-5" viewBox="0 0 24 24" fill="none"
+                         stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                         aria-hidden="true">
+                      <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/>
+                      <rect x="2" y="9" width="4" height="12"/>
+                      <circle cx="4" cy="4" r="2"/>
+                    </svg> linkedin.com/in/andre-ehrlich-35942384
+                  </a>
+              <p>
+          </div>
+          </p>
+        </section>
+      </main>
+
+      <!-- Sticky vertical sidebar → matches the reference site's feel -->
+      <aside class="sticky top-0 h-screen pb-4 pr-4 pt-4 text-xs [writing-mode:vertical-lr] xs:text-sm md:pr-14 tall:pb-8 tall:pt-8">
+        <div class="flex flex-nowrap items-center whitespace-nowrap align-middle">
+          <div>
+            <a class="font-mono hover:text-amber-600 dark:hover:text-orange-300" href="#about" target="_self">[1] <span class="hidden tall:inline-block">About</span></a>
+          </div>
+          <div class="pt-4 tall:pt-8">
+            <a class="font-mono hover:text-amber-600 dark:hover:text-orange-300" href="#examples" target="_self">[2] <span class="hidden tall:inline-block">PhD</span></a>
+          </div>
+          <div class="pt-4 tall:pt-8">
+            <a class="font-mono hover:text-amber-600 dark:hover:text-orange-300" href="#experience" target="_self">[3] <span class="hidden tall:inline-block">Experience</span></a>
+          </div>
+          <div class="pt-4 tall:pt-8">
+            <a class="font-mono hover:text-amber-600 dark:hover:text-orange-300" href="#contact" target="_self">[4] <span class="hidden tall:inline-block">Contact</span></a>
+          </div>
+
+          <!-- Optional CV link — replace href when you add a file -->
+          <div>
+            <a class="mb-4 mt-4 rounded-sm border border-solid border-stone-600 pb-4 pt-4 font-mono hover:border-amber-600 hover:bg-amber-50 hover:text-amber-600 dark:border-stone-400 dark:hover:border-orange-300 dark:hover:bg-orange-950 dark:hover:text-orange-300 tall:mb-8 tall:mt-8" href="/assets/Andre_Ehrlich_CV.pdf">CV</a>
+          </div>
+
+          <div class="w-[1px] flex-grow self-center bg-stone-600 dark:bg-stone-400"></div>
+
+          <!-- External profiles (compact glyphs; swap for SVGs if you prefer) -->
+          <!-- <div class="pt-4 tall:pt-8"> -->
+          <!--   <a class="font-mono hover:text-amber-600 dark:hover:text-orange-300" href="mailto:[lastname][firstname]@gmail.com">@</a> -->
+          <!-- </div> -->
+        <div class="pt-3">
+          <a class="hover:text-amber-600 dark:hover:text-orange-300"
+             href="https://github.com/andreehrlich" aria-label="GitHub">
+            <svg class="h-5 w-5" viewBox="0 0 24 24" fill="none"
+                 stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                 aria-hidden="true">
+              <path d="M9 19c-5 1.5-5-2.5-7-3"/>
+              <path d="M15 22v-3.87a3.37 3.37 0 0 0-.94-2.61"/>
+              <path d="M20.49 11.74a5.44 5.44 0 0 0 .39-2.77 5.44 5.44 0 0 0-1.5-3.86 5.07 5.07 0 0 0-.09-3s-1.18-.35-3.91 1.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1a5.07 5.07 0 0 0-.09 3 5.44 5.44 0 0 0-1.5 3.86 5.44 5.44 0 0 0 .39 2.77"/>
+              <path d="M9 18.13a3.37 3.37 0 0 1-2.06-3.09"/>
+              <path d="M15 18.13a3.37 3.37 0 0 0-2.06-3.09"/>
+              <path d="M15 18.13c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77"/>
+              <path d="M9 18.13V22"/>
+            </svg>
+          </a>
+        </div>
+
+        <div class="pt-3">
+          <a class="hover:text-amber-600 dark:hover:text-orange-300"
+             href="https://www.linkedin.com/in/andre-ehrlich-35942384/" aria-label="LinkedIn">
+            <svg class="h-5 w-5" viewBox="0 0 24 24" fill="none"
+                 stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                 aria-hidden="true">
+              <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/>
+              <rect x="2" y="9" width="4" height="12"/>
+              <circle cx="4" cy="4" r="2"/>
+            </svg>
+          </a>
+        </div>
+
+          <!-- <div class="pt-3"> -->
+          <!--   <a class="font-mono hover:text-amber-600 dark:hover:text-orange-300" href="https://github.com/andreehrlich">GH</a> -->
+          <!-- </div> -->
+          <!-- <div class="pt-3"> -->
+          <!--   <a class="font-mono hover:text-amber-600 dark:hover:text-orange-300" href="https://www.linkedin.com/in/andre-ehrlich-35942384/">in</a> -->
+          <!-- </div> -->
+
+          <!-- Theme toggle -->
+          <button id="theme-toggle" class="pb-6 pt-3">
+            <span id="theme-toggle-dark" class="hidden">☾</span>
+            <span id="theme-toggle-light">☀︎</span>
+          </button>
+
+          <div class="h-16 w-[1px] flex-shrink self-center bg-stone-600 dark:bg-stone-400"></div>
+        </div>
+      </aside>
+
+      <div class="flex-grow"></div>
     </div>
-    <div id="about" class="card">
-      
-      <div id="intro">
-        <h4>About me</h4>
 
-        <p> Doctoral Candidate in Biostatistics at the Athens University of
-        Economics & Business (AUEB). My thesis, "On the Analysis of Biomedical
-        Data via Functional Distributions", concerns two distinct kinds of
-        biostatistical problems: (1) epidemic forecasting and (2) survival
-        extrapolation. We model of the underlying processes as transformed
-        Neural Diffusion and Gaussian Processes, in and assess their
-        statistical and computational efficiency and extrapolation accuracy.
-        Advised by Dr. Nikolaos Demiris & Dr. Petros Dellaportas. </p>
+    <!-- Theme toggle logic -->
+    <script>
+      const themeToggleBtn = document.getElementById('theme-toggle');
+      const darkIcon = document.getElementById('theme-toggle-dark');
+      const lightIcon = document.getElementById('theme-toggle-light');
 
-        <p> Before this, I had 5 years of industry experience building models,
-        algorithms, and software for Internet Technology, Maritime Shipping,
-        Biomedical & Health Science research. </p> 
+      function refreshIcons() {
+        if (document.documentElement.classList.contains('dark')) {
+          darkIcon.classList.remove('hidden');
+          lightIcon.classList.add('hidden');
+        } else {
+          darkIcon.classList.add('hidden');
+          lightIcon.classList.remove('hidden');
+        }
+      }
 
-      </div>
+      themeToggleBtn?.addEventListener('click', () => {
+        document.documentElement.classList.toggle('dark');
+        const nowDark = document.documentElement.classList.contains('dark');
+        localStorage.setItem('color-theme', nowDark ? 'dark' : 'light');
+        refreshIcons();
+      });
+
+      refreshIcons();
+    </script>
+
+    <!-- Paper popovers (hover cards) -->
+    <div id="paper-popovers">
+    <div data-popover id="gqtl-pop" role="tooltip" class="max-w-md invisible absolute z-10 inline-block rounded-sm border px-3 py-2 text-xs sm:text-sm opacity-0 transition-opacity duration-300 border-stone-400 dark:border-stone-500 bg-white dark:bg-stone-900 text-stone-700 dark:text-stone-300">
+    <p class="font-medium">gQTL: A Web Application for QTL Analysis Using the Collaborative Cross Mouse Genetic Reference Population.</p>
+    <p class="italic">G3 Genes|Genomes|Genetics (2018).</p>
+    <p class="pt-1"><a class="text-sky-600 dark:text-sky-300 underline underline-offset-2" href="http://www.g3journal.org/content/8/8/2559.full">Open paper</a></p>
     </div>
-  <div id="tutorials" class="card">
-    <h4>Working Examples</h4>
-    <ol>
-      <!-- <li>Non-Parametric Estimation</li> -->
-      <!-- <li><a href="tutorials/itr.html">Precision Medicine: Non-Parametrically Optimized Linear Survival Treatment Rules</a></li> -->
-      <li><a href="tutorials/brazil_epidemic.html">Epidemic Forecasting with Viral Load in Brazil: Latent log-GP for Time-Varying Transmission</a></li>
-      <li><a href="tutorials/gp_animation.html">Simple Gaussian Process Viewer</a></li>
-      <!-- <li><a href="tutorials/bayesgp.html">Epidemics: Bayesian Gaussian Process in Stan</a></li> -->
-    </ol>
-  </div>
 
 
-  <!-- <div id="working-examples"> -->
-  <!--   <h2>Working Examples</h2> -->
-  <!-- </div> -->
-  <footer>
-    <!-- <script src="//https://cdn.jsdelivr.net/npm/d3@7/+esm"></script> -->
-    <!-- <script src="//cdnjs.cloudflare.com/ajax/libs/d3/3.5.17/d3.js"></script>  -->
-    <script src="https://cdn.jsdelivr.net/npm/d3@7"></script>
-    <!-- <script src="/js/graph3.js"></script> -->
-    <!-- <script type="module" src="/js/graph.js"></script> -->
-  </footer>
-</body>
+    <div data-popover id="ajp-pop" role="tooltip" class="max-w-md invisible absolute z-10 inline-block rounded-sm border px-3 py-2 text-xs sm:text-sm opacity-0 transition-opacity duration-300 border-stone-400 dark:border-stone-500 bg-white dark:bg-stone-900 text-stone-700 dark:text-stone-300">
+    <p class="font-medium">Statistical RNA?seq Analysis of Cholangiocarcinoma Tissue Samples.</p>
+    <p class="italic">The American Journal of Pathology (2016).</p>
+    <p class="pt-1"><a class="text-sky-600 dark:text-sky-300 underline underline-offset-2" href="http://ajp.amjpathol.org/article/S0002-9440(16)30529-6/abstract">Open paper</a></p>
+    </div>
+    </div>
+
+  </body>
 </html>
+
